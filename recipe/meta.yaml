@@ -1,18 +1,18 @@
 {% set name = "pydumpling" %}
-{% set version = "0.1.6" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pydumpling-{{ version }}.tar.gz
-  sha256: 9ec944a9b8b9ddf367e008f4e819ff535d6a8f393aebb62be9a6a7e6eaaf532f
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/pydumpling-{{ version }}.tar.gz
+  sha256: 9bb85184a13112d338d89fc41b6b2a383d654a722a6fed719d6ef4ad554d619b
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
