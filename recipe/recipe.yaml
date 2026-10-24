@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: pydumpling
+  version: "0.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/${{ name[0] }}/${{ name }}/pydumpling-${{ version }}.tar.gz
+  sha256: 9bb85184a13112d338d89fc41b6b2a383d654a722a6fed719d6ef4ad554d619b
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling >=1.27,<2
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - dill >=0.4.1
+    - packaging >=26.3
+
+tests:
+  - python:
+      imports:
+        - pydumpling
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+
+about:
+  summary: Python post-mortem debugger
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/cocolato/pydumpling
+  documentation: https://pydumpling.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - thewchan
